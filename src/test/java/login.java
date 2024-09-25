@@ -2,12 +2,29 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class login extends methods{
-    @Test
+    @Test(priority = 1)
     public void username(){
     EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"),"mark@admin.com");
+    clicks(By.xpath("//android.widget.ImageView\n"));
     }
-    @Test
+    @Test(priority = 2)
     public void password(){
         EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]"),"mark");
+        clicks(By.xpath("//android.widget.ImageView\n"));
+    }
+//    @Test(priority = 3)
+//    public void forgetpass(){
+//      clicks(By.xpath("//android.widget.Button[@content-desc=\"Forget Password\"]"));
+//      EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"),"mark@testing.com");
+//        clicks(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]"));
+//    }
+    @Test(priority = 3)
+    public void createaccount(){
+        clicks(By.xpath("//android.widget.Button[@content-desc=\"Create Account\"]"));
+        EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"),"testusername");
+        EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[2]"),"testpassword");
+        EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[3]"),"testpassword");
+        clicks(By.xpath("//android.widget.ImageView\n"));
+        clicks(By.xpath("//android.widget.Button[@content-desc=\"Login\"]"));
     }
 }

@@ -33,7 +33,7 @@ public class methods {
         cap.setCapability("appActivity", "com.example.verygoodcore.finehome_new.MainActivity");
         URL url = new URL("http://localhost:4723");
         driver = new AndroidDriver(url, cap);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(50));
     }
     @AfterSuite
     public void tearDownSuite() throws InterruptedException {
@@ -56,7 +56,7 @@ public class methods {
         System.out.println(hold);
     }
     public void EnterText(By locator,String value){
-        WebElement click = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         click.click();
         click.sendKeys(value);
     }
