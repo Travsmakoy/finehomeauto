@@ -1,9 +1,14 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
+import java.beans.Visibility;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -38,5 +43,21 @@ public class methods {
             driver.quit();
             System.out.println("ALL TEST COMPLETE");
         }
+    }
+    public void clicks(By locator){
+        driver.findElement(locator).click();
+        String hold = driver.findElement(locator).getText();
+        System.out.println(hold+"test");
+    }
+    public void clickdifferent(By locator){
+        WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        String hold = click.getText();
+        click.click();
+        System.out.println(hold);
+    }
+    public void EnterText(By locator,String value){
+        WebElement click = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        click.click();
+        click.sendKeys(value);
     }
 }
