@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
-import java.beans.Visibility;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -45,9 +43,8 @@ public class methods {
         }
     }
     public void clicks(By locator){
-        driver.findElement(locator).click();
-        String hold = driver.findElement(locator).getText();
-        System.out.println(hold+"test");
+   WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+   click.click();
     }
     public void clickdifferent(By locator){
         WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

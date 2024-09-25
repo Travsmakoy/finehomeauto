@@ -1,12 +1,12 @@
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.security.PublicKey;
 
 public class checkNav extends methods {
 
     @Test(priority = 1)
-    public void Agents(){
+    public void Agents() throws InterruptedException {
+        Thread.sleep(2000);
     clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Agents\"]"));;
     }
     @Test(priority = 2)
