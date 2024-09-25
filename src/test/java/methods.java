@@ -31,7 +31,7 @@ public class methods {
         cap.setCapability("appActivity", "com.example.verygoodcore.finehome_new.MainActivity");
         URL url = new URL("http://localhost:4723");
         driver = new AndroidDriver(url, cap);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
     @AfterSuite
     public void tearDownSuite() throws InterruptedException {

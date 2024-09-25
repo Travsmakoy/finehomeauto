@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 public class checkNav extends methods {
 
     @Test(priority = 1)
-    public void Agents() throws InterruptedException {
-        Thread.sleep(2000);
+    public void Agents() throws InterruptedException
+    {Thread.sleep(3000);
     clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Agents\"]"));;
     }
     @Test(priority = 2)
