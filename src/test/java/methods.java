@@ -29,9 +29,11 @@ public class methods {
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("appPackage", "com.example.verygoodcore.finehome_new.dev");
         cap.setCapability("appActivity", "com.example.verygoodcore.finehome_new.MainActivity");
+//        cap.setCapability("appPackage", "com.aqary.aqary_investment");
+//        cap.setCapability("appActivity", "com.aqary.aqary_investment.MainActivity");
         URL url = new URL("http://localhost:4723");
         driver = new AndroidDriver(url, cap);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(50));
     }
     @AfterSuite
     public void tearDownSuite() throws InterruptedException {
