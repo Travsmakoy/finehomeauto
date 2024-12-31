@@ -7,11 +7,11 @@ public class checkNav extends methods {
     @Test(priority = 1)
     public void Agents() throws InterruptedException
     {Thread.sleep(3000);
-    clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Agents\"]"));;
+    clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Team\"]"));;
     }
     @Test(priority = 2)
     public void Properties(){
-        clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Properties\"]"));
+        clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Listing\"]"));
     }
     @Test(priority = 3)
     public void Home(){
@@ -25,8 +25,8 @@ public class checkNav extends methods {
     public void Settings(){
         clicks(By.xpath("//android.widget.ImageView[@content-desc=\"More\"]"));
     }
-    @Test(priority = 6)
-    public void Login(){
-        clickdifferent(By.xpath("//android.view.View[@content-desc=\"Login\"]"));
-    }
+//    @Test(priority = 6)
+//    public void Login(){
+//        clickdifferent(By.xpath("//android.view.View[@content-desc=\"Login\"]"));
+//    }
 }

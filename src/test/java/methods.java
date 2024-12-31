@@ -27,8 +27,8 @@ public class methods {
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "14");
         cap.setCapability("automationName", "UiAutomator2");
-        cap.setCapability("appPackage", "com.example.verygoodcore.finehome_new.dev");
-        cap.setCapability("appActivity", "com.example.verygoodcore.finehome_new.MainActivity");
+        cap.setCapability("appPackage", "com.aqary.investment");
+        cap.setCapability("appActivity", "com.aqary.investment.MainActivity");
 //        cap.setCapability("appPackage", "com.aqary.aqary_investment");
 //        cap.setCapability("appActivity", "com.aqary.aqary_investment.MainActivity");
         URL url = new URL("http://localhost:4723");
