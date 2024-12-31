@@ -13,9 +13,9 @@ public class login extends methods{
     }
     @Test(priority = 3)
     public void forgetpass() throws InterruptedException {
-        clicks(By.xpath("//android.widget.Button[@content-desc=\"Forget Password\"]"));
+        clicks(By.xpath("//android.view.View[@content-desc=\"Forget Password?\"]"));
         EnterText(By.xpath("//android.widget.EditText"),"test@gmail.com");
-        clicks(By.xpath("//android.view.View[@content-desc=\"Submit\"]"));
+        clicks(By.xpath("//android.view.View[@content-desc=\"Send OTP\"]"));
     }
     @Test(priority = 4)
     public void otpPage(){

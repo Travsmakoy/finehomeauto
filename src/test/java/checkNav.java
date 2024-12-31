@@ -25,8 +25,8 @@ public class checkNav extends methods {
     public void Settings(){
         clicks(By.xpath("//android.widget.ImageView[@content-desc=\"More\"]"));
     }
-//    @Test(priority = 6)
-//    public void Login(){
-//        clickdifferent(By.xpath("//android.view.View[@content-desc=\"Login\"]"));
-//    }
+    @Test(priority = 6)
+    public void Login(){
+        clickdifferent(By.xpath("(//android.view.View[@content-desc=\"Login\"])[2]"));
+    }
 }
