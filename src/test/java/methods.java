@@ -20,7 +20,7 @@ public class methods {
     public void setUpSuite() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("ignoreHiddenApiPolicyError", true);
-        cap.setCapability("skipUnlock", true);
+//        cap.setCapability("skipUnlock", true);
         cap.setCapability("noReset", true);
         cap.setCapability("deviceName", "OPPO Reno10 5G");
         cap.setCapability("udid", "7D75SKOBXWOVUSDU");

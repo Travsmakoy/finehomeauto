@@ -10,7 +10,7 @@ public class checkNav extends methods {
 
     @Test(priority = 1)
     public void Team() throws InterruptedException {
-        Thread.sleep(5000);
+//        Thread.sleep();
         WebElement teamNav = wait.until(ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("BOTTOM_NAVIGATION_BAR_TEAM\nTeam")));
         teamNav.click();
     }
