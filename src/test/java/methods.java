@@ -33,7 +33,7 @@ public class methods {
 //        cap.setCapability("appActivity", "com.aqary.aqary_investment.MainActivity");
         URL url = new URL("http://localhost:4723");
         driver = new AndroidDriver(url, cap);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
     @AfterSuite
     public void tearDownSuite() throws InterruptedException {
