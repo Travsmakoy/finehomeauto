@@ -1,5 +1,6 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,22 +19,22 @@ public class methods {
 
     @BeforeSuite
     public void setUpSuite() throws MalformedURLException {
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("ignoreHiddenApiPolicyError", true);
-//        cap.setCapability("skipUnlock", true);
-        cap.setCapability("noReset", true);
-        cap.setCapability("deviceName", "OPPO Reno10 5G");
-        cap.setCapability("udid", "7D75SKOBXWOVUSDU");
-        cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "14");
-        cap.setCapability("automationName", "UiAutomator2");
-        cap.setCapability("appPackage", "com.aqary.investment");
-        cap.setCapability("appActivity", "com.aqary.investment.MainActivity");
-//        cap.setCapability("appPackage", "com.aqary.aqary_investment");
-//        cap.setCapability("appActivity", "com.aqary.aqary_investment.MainActivity");
+        UiAutomator2Options options = new UiAutomator2Options();
+        options.setCapability("ignoreHiddenApiPolicyError", true);
+        options.setCapability("noReset", true);
+        options.setDeviceName("OPPO Reno10 5G");
+        options.setUdid("7D75SKOBXWOVUSDU");
+        options.setPlatformName("Android");
+        options.setPlatformVersion("14");
+        options.setAutomationName("UiAutomator2");
+        options.setAppPackage("com.aqary.investment");
+        options.setAppActivity("com.aqary.investment.MainActivity");
+
         URL url = new URL("http://localhost:4723");
-        driver = new AndroidDriver(url, cap);
+        driver = new AndroidDriver(url, options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        System.out.println("App launched successfully!");
     }
     @AfterSuite
     public void tearDownSuite() throws InterruptedException {
