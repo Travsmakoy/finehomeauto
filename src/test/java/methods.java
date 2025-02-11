@@ -40,7 +40,7 @@ public class methods {
     public void tearDownSuite() throws InterruptedException {
         // Quit the WebDriver instance
         if (driver != null) {
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
             driver.quit();
             System.out.println("ALL TEST COMPLETE");
         }

@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 public class login extends methods{
     @Test(priority = 1)
     public void username(){
+        clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Cancel\"]\n"));
     EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"),"mark@admin.com");
     }
     @Test(priority = 2)
