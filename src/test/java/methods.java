@@ -31,6 +31,7 @@ public class methods {
         options.setAppActivity("com.aqary.aqary_mobile_whitelabel.MainActivity");
 
         URL url = new URL("http://localhost:4723");
+
         driver = new AndroidDriver(url, options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
