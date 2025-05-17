@@ -22,17 +22,17 @@ public class methods {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setCapability("ignoreHiddenApiPolicyError", true);
         options.setCapability("noReset", true);
-        options.setDeviceName("OPPO Reno10 5G");
-        options.setUdid("7D75SKOBXWOVUSDU");
+        options.setDeviceName("sdk_gphone64_x86_64");
+        options.setUdid("emulator-5554");
         options.setPlatformName("Android");
         options.setPlatformVersion("14");
         options.setAutomationName("UiAutomator2");
         options.setAppPackage("com.aqary.investment");
-        options.setAppActivity("com.aqary.investment.MainActivity");
+        options.setAppActivity("com.aqary.aqary_mobile_whitelabel.MainActivity");
 
         URL url = new URL("http://localhost:4723");
         driver = new AndroidDriver(url, options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         System.out.println("App launched successfully!");
     }
