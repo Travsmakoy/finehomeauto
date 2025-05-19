@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 public class SavedListing extends methods {
 
-    // ==================== Locators ====================
     private final By LISTING_PROJECTS = By.xpath("//android.view.View[@content-desc=\"35 Listing Projects\n" +
             "01\n" +
             "Listing Projects\n" +
@@ -22,7 +21,6 @@ public class SavedListing extends methods {
     private final By LISTING_TAB = By.xpath("//android.view.View[@content-desc='Listing Project\nTab 3 of 3']");
     private final By LOGOUT = By.xpath("//android.view.View[@content-desc=\"Log Out\"]");
 
-    // ==================== Test 1: Navigate to Listings ====================
     @Test(priority = 1)
     public void openListingProjects() throws InterruptedException {
         Thread.sleep(250);
@@ -30,19 +28,17 @@ public class SavedListing extends methods {
         clickElement(MAYAR_CARD);
     }
 
-    // ==================== Test 2: Perform Login ====================
     @Test(priority = 2)
     public void loginAsUser() {
         clickElement(CLOSE_SHEET);
         enterText(EMAIL_FIELD, "mark.casuco5@gmail.com");
 //        clickdifferent(PASSWORD_FIELD); // Brings keyboard focus
         enterText(PASSWORD_FIELD, "Travsmakoy5!");
-        clickAndLogText(PASSWORD_FIELD); // Ensure the keyboard is dismissed or focus retained
+        clickAndLogText(PASSWORD_FIELD);
         clickElement(LOGIN_BUTTON);
-        clickElement(CLOSE_SHEET); // Close popup if appears again
+        clickElement(CLOSE_SHEET);
     }
 
-    // ==================== Test 3: Save a Listing and Verify ====================
     @Test(priority = 3)
     public void saveAndVerifyListing() {
         clickElement(MAYAR_CARD);
@@ -51,17 +47,14 @@ public class SavedListing extends methods {
         clickElement(SAVED_LISTINGS);
         clickElement(LISTING_TAB);
 
-        // Verification: Ensure saved listing appears
         boolean isSaved = driver.findElements(MAYAR_CARD).size() > 0;
         Assert.assertTrue(isSaved, "Saved listing is not displayed.");
     }
 
-    // ==================== Test 4: Unsave the Listing ====================
     @Test(priority = 4)
     public void unSaveListing() {
         clickElement(MAYAR_CARD);
-        clickElement(SAVE_BUTTON); // Toggle to unsave
-        // Optional: Add assertion here to verify removal
+        clickElement(SAVE_BUTTON);
     }
     @Test(priority = 5)
     public void LogOut() {

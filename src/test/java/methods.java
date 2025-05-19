@@ -44,8 +44,6 @@ public class methods {
         }
     }
 
-    // ======================= Utility Methods =======================
-
     public void clickElement(By locator) {
         try {
             WebElement element = waitUntilClickable(locator);
