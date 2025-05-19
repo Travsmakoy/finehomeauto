@@ -3,9 +3,9 @@
 <suite name="Suite">
     <test name="Test">
         <classes>
-<!--            <class name="login"/>-->
-<!--            <class name="SavedListing"/>-->
-            <class name="TestSectionCounts"/>
+            <class name="SectionCounts"/>
+            <class name="LoginFunctionality"/>
+            <class name="SavedListing"/>
         </classes>
     </test>
 </suite>

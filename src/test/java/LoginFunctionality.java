@@ -1,7 +1,7 @@
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class login extends methods {
+public class LoginFunctionality extends methods {
 
     private final By PASSWORD_FIELD = By.xpath("//android.widget.EditText[2]");
 
