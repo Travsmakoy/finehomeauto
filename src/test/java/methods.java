@@ -3,7 +3,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
@@ -32,7 +31,7 @@ public class methods {
         options.setAppActivity("com.aqary.aqary_mobile_whitelabel.MainActivity");
 
         driver = new AndroidDriver(new URL("http://localhost:4723"), options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         System.out.println("[INFO] App launched successfully.");
     }

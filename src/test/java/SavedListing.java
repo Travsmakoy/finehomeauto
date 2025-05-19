@@ -1,12 +1,16 @@
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.WheelInput;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SavedListing extends methods {
 
     // ==================== Locators ====================
-    private final By LISTING_PROJECTS = By.xpath("//android.view.View[@content-desc='35 Listing Projects\n01\nListing Projects\nDiscover our collection of ongoing and completed real estate development projects.']");
+    private final By LISTING_PROJECTS = By.xpath("//android.view.View[@content-desc=\"35 Listing Projects\n" +
+            "01\n" +
+            "Listing Projects\n" +
+            "Discover our collection of ongoing and completed real estate development projects.\"]");
     private final By MAYAR_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Mayar')]/android.view.View[2]");
     private final By CLOSE_SHEET = By.xpath("//android.view.View[@content-desc='Close sheet']");
     private final By EMAIL_FIELD = By.xpath("//android.widget.EditText[1]");
@@ -20,7 +24,8 @@ public class SavedListing extends methods {
 
     // ==================== Test 1: Navigate to Listings ====================
     @Test(priority = 1)
-    public void openListingProjects() {
+    public void openListingProjects() throws InterruptedException {
+        Thread.sleep(250);
         clickElement(LISTING_PROJECTS);
         clickElement(MAYAR_CARD);
     }
