@@ -69,11 +69,11 @@ public class methods {
 
     public void enterText(By locator, String value) {
         try {
-            WebElement field = waitUntilVisible(locator);
+            WebElement field = waitUntilClickable(locator);
             field.click();
-            field.clear();
+//            field.clear();
             field.sendKeys(value);
-            System.out.println("[ACTION] Entered text '" + value + "' into: " + locator.toString());
+//            System.out.println("[ACTION] Entered text '" + value + "' into: " + locator.toString());
         } catch (Exception e) {
             System.err.println("[ERROR] Failed to enter text in: " + locator.toString());
             e.printStackTrace();
