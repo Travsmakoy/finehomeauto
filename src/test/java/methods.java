@@ -60,7 +60,7 @@ public class methods {
 
     public void clickAndLogText(By locator) {
         try {
-            WebElement element = waitUntilClickable(locator);
+            WebElement element = waitUntilVisible(locator);
             String text = element.getText();
             element.click();
             System.out.println("[ACTION] Clicked and logged: " + text);
@@ -72,7 +72,7 @@ public class methods {
 
     public void enterText(By locator, String value) {
         try {
-            WebElement field = waitUntilClickable(locator);
+            WebElement field = waitUntilVisible(locator);
             field.click();
             field.clear();
             field.sendKeys(value);
