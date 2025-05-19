@@ -3,11 +3,12 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -30,35 +31,80 @@ public class methods {
         options.setAppPackage("com.aqary.investment");
         options.setAppActivity("com.aqary.aqary_mobile_whitelabel.MainActivity");
 
-        URL url = new URL("http://localhost:4723");
-
-        driver = new AndroidDriver(url, options);
+        driver = new AndroidDriver(new URL("http://localhost:4723"), options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        System.out.println("App launched successfully!");
+        System.out.println("[INFO] App launched successfully.");
     }
+
     @AfterSuite
-    public void tearDownSuite() throws InterruptedException {
-        // Quit the WebDriver instance
+    public void tearDownSuite() {
         if (driver != null) {
-//            Thread.sleep(2000);
             driver.quit();
-            System.out.println("ALL TEST COMPLETE");
+            System.out.println("[INFO] Driver quit successfully. ALL TESTS COMPLETE.");
         }
     }
-    public void clicks(By locator){
-   WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-   click.click();
+
+    // ======================= Utility Methods =======================
+
+    public void clickElement(By locator) {
+        try {
+            WebElement element = waitUntilClickable(locator);
+            element.click();
+            System.out.println("[ACTION] Clicked: " + locator.toString());
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to click: " + locator.toString());
+            e.printStackTrace();
+        }
     }
-    public void clickdifferent(By locator){
-        WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        String hold = click.getText();
-        click.click();
-        System.out.println(hold);
+
+    public void clickAndLogText(By locator) {
+        try {
+            WebElement element = waitUntilClickable(locator);
+            String text = element.getText();
+            element.click();
+            System.out.println("[ACTION] Clicked and logged: " + text);
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to click/log text: " + locator.toString());
+            e.printStackTrace();
+        }
     }
-    public void EnterText(By locator,String value){
-        WebElement click = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        click.click();
-        click.sendKeys(value);
+
+    public void enterText(By locator, String value) {
+        try {
+            WebElement field = waitUntilClickable(locator);
+            field.click();
+            field.clear();
+            field.sendKeys(value);
+            System.out.println("[ACTION] Entered text '" + value + "' into: " + locator.toString());
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to enter text in: " + locator.toString());
+            e.printStackTrace();
+        }
+    }
+
+    public WebElement waitUntilVisible(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public WebElement waitUntilClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public boolean isElementDisplayed(By locator) {
+        try {
+            return waitUntilVisible(locator).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getElementText(By locator) {
+        try {
+            return waitUntilVisible(locator).getText();
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to get text from: " + locator.toString());
+            return "";
+        }
     }
 }

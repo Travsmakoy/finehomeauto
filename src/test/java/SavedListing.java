@@ -16,34 +16,35 @@ public class SavedListing extends methods {
     private final By MORE_TAB = By.xpath("//android.widget.ImageView[@content-desc='BOTTOM_NAVIGATION_BAR_MORE\nMore']");
     private final By SAVED_LISTINGS = By.xpath("//android.widget.ImageView[@content-desc='Saved Listings']");
     private final By LISTING_TAB = By.xpath("//android.view.View[@content-desc='Listing Project\nTab 3 of 3']");
+    private final By LOGOUT = By.xpath("//android.view.View[@content-desc=\"Log Out\"]");
 
     // ==================== Test 1: Navigate to Listings ====================
     @Test(priority = 1)
     public void openListingProjects() {
-        clicks(LISTING_PROJECTS);
-        clicks(MAYAR_CARD);
+        clickElement(LISTING_PROJECTS);
+        clickElement(MAYAR_CARD);
     }
 
     // ==================== Test 2: Perform Login ====================
     @Test(priority = 2)
     public void loginAsUser() {
-        clicks(CLOSE_SHEET);
-        EnterText(EMAIL_FIELD, "mark.casuco5@gmail.com");
+        clickElement(CLOSE_SHEET);
+        enterText(EMAIL_FIELD, "mark.casuco5@gmail.com");
 //        clickdifferent(PASSWORD_FIELD); // Brings keyboard focus
-        EnterText(PASSWORD_FIELD, "Travsmakoy5!");
-        clickdifferent(PASSWORD_FIELD); // Ensure the keyboard is dismissed or focus retained
-        clicks(LOGIN_BUTTON);
-        clicks(CLOSE_SHEET); // Close popup if appears again
+        enterText(PASSWORD_FIELD, "Travsmakoy5!");
+        clickAndLogText(PASSWORD_FIELD); // Ensure the keyboard is dismissed or focus retained
+        clickElement(LOGIN_BUTTON);
+        clickElement(CLOSE_SHEET); // Close popup if appears again
     }
 
     // ==================== Test 3: Save a Listing and Verify ====================
     @Test(priority = 3)
     public void saveAndVerifyListing() {
-        clicks(MAYAR_CARD);
-        clicks(SAVE_BUTTON);
-        clicks(MORE_TAB);
-        clicks(SAVED_LISTINGS);
-        clicks(LISTING_TAB);
+        clickElement(MAYAR_CARD);
+        clickElement(SAVE_BUTTON);
+        clickElement(MORE_TAB);
+        clickElement(SAVED_LISTINGS);
+        clickElement(LISTING_TAB);
 
         // Verification: Ensure saved listing appears
         boolean isSaved = driver.findElements(MAYAR_CARD).size() > 0;
@@ -53,8 +54,12 @@ public class SavedListing extends methods {
     // ==================== Test 4: Unsave the Listing ====================
     @Test(priority = 4)
     public void unSaveListing() {
-        clicks(MAYAR_CARD);
-        clicks(SAVE_BUTTON); // Toggle to unsave
+        clickElement(MAYAR_CARD);
+        clickElement(SAVE_BUTTON); // Toggle to unsave
         // Optional: Add assertion here to verify removal
+    }
+    @Test(priority = 5)
+    public void LogOut() {
+        clickElement(LOGOUT);
     }
 }
