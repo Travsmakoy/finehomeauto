@@ -1,10 +1,8 @@
-import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.WheelInput;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SavedListing extends methods {
+public class SavedListing extends BaseMethods {
 
     private final By LISTING_PROJECTS = By.xpath("//android.view.View[@content-desc=\"35 Listing Projects\n" +
             "01\n" +

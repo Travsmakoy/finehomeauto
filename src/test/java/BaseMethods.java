@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class methods {
+public class BaseMethods {
 
     public static AppiumDriver driver;
     public static WebDriverWait wait;

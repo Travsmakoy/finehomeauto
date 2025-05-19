@@ -1,7 +1,7 @@
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class LoginFunctionality extends methods {
+public class LoginFunctionality extends BaseMethods {
 
     private final By PASSWORD_FIELD = By.xpath("//android.widget.EditText[2]");
 
@@ -23,7 +23,7 @@ public class LoginFunctionality extends methods {
         clickElement(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]"));
         clickElement(By.xpath("//android.widget.ImageView[@content-desc=\"BOTTOM_NAVIGATION_BAR_HOME\n" +
                 "Home\"]"));
-        System.out.println("TEST LOGIN DONE");
+//        System.out.println("TEST LOGIN DONE");
     }
 
 //    @Test(priority = 3)

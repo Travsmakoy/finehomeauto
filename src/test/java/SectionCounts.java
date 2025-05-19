@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SectionCounts extends methods {
+public class SectionCounts extends BaseMethods {
 
     // === Locators ===
     private final By projectTile = By.xpath("//android.view.View[contains(@content-desc, 'Listing Projects')]");
@@ -104,7 +104,7 @@ public class SectionCounts extends methods {
     @Test(priority = 3)
     public void validateUnitCounts() throws InterruptedException {
         String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, 'Unit And Luxury')]"))).getAttribute("content-desc"));
-        System.out.println("Listing Property Count: " + outerCount);
+        System.out.println("Listing Unit Count: " + outerCount);
 
         clickElement(By.xpath("//android.view.View[contains(@content-desc, 'Unit And Luxury')]"));
         Thread.sleep(1500);
@@ -123,7 +123,7 @@ public class SectionCounts extends methods {
 
         backAndSwipeLeft();
 
-        Assert.assertEquals(String.valueOf(sum), outerCount, "Mismatch: Property filter count does not match listing count.");
+        Assert.assertEquals(String.valueOf(sum), outerCount, "Mismatch: Unit filter count does not match listing count.");
 //        Assert.assertEquals(locationCount, outerCount, "Mismatch: Property location count does not match listing count.");
     }
 }
