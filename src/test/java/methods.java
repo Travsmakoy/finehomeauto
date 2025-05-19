@@ -48,7 +48,7 @@ public class methods {
         try {
             WebElement element = waitUntilClickable(locator);
             element.click();
-            System.out.println("[ACTION] Clicked: " + locator.toString());
+//            System.out.println("[ACTION] Clicked: " + locator.toString());
         } catch (Exception e) {
             System.err.println("[ERROR] Failed to click: " + locator.toString());
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class methods {
             WebElement element = waitUntilVisible(locator);
             String text = element.getText();
             element.click();
-            System.out.println("[ACTION] Clicked and logged: " + text);
+//            System.out.println("[ACTION] Clicked and logged: " + text);
         } catch (Exception e) {
             System.err.println("[ERROR] Failed to click/log text: " + locator.toString());
             e.printStackTrace();
