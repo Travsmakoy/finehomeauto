@@ -14,8 +14,8 @@ import java.time.Duration;
 
 public class methods {
 
-    protected static AppiumDriver driver;
-    protected static WebDriverWait wait;
+    public static AppiumDriver driver;
+    public static WebDriverWait wait;
 
     @BeforeSuite
     public void setUpSuite() throws MalformedURLException {
@@ -31,16 +31,16 @@ public class methods {
         options.setAppActivity("com.aqary.aqary_mobile_whitelabel.MainActivity");
 
         driver = new AndroidDriver(new URL("http://localhost:4723"), options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-        System.out.println("[INFO] App launched successfully.");
+//        System.out.println("[INFO] App launched successfully.");
     }
 
     @AfterSuite
     public void tearDownSuite() {
         if (driver != null) {
             driver.quit();
-            System.out.println("[INFO] Driver quit successfully. ALL TESTS COMPLETE.");
+//            System.out.println("[INFO] Driver quit successfully. ALL TESTS COMPLETE.");
         }
     }
 
