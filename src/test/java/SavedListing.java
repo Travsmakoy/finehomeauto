@@ -1,91 +1,60 @@
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+public class SavedListing extends methods {
 
-public class SavedListing extends  methods{
+    // ==================== Locators ====================
+    private final By LISTING_PROJECTS = By.xpath("//android.view.View[@content-desc='35 Listing Projects\n01\nListing Projects\nDiscover our collection of ongoing and completed real estate development projects.']");
+    private final By MAYAR_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Mayar')]/android.view.View[2]");
+    private final By CLOSE_SHEET = By.xpath("//android.view.View[@content-desc='Close sheet']");
+    private final By EMAIL_FIELD = By.xpath("//android.widget.EditText[1]");
+    private final By PASSWORD_FIELD = By.xpath("//android.widget.EditText[2]");
+    private final By LOGIN_BUTTON = By.xpath("//android.view.View[@content-desc='Login']");
+    private final By SAVE_BUTTON = By.xpath("//android.widget.Button");
+    private final By MORE_TAB = By.xpath("//android.widget.ImageView[@content-desc='BOTTOM_NAVIGATION_BAR_MORE\nMore']");
+    private final By SAVED_LISTINGS = By.xpath("//android.widget.ImageView[@content-desc='Saved Listings']");
+    private final By LISTING_TAB = By.xpath("//android.view.View[@content-desc='Listing Project\nTab 3 of 3']");
+
+    // ==================== Test 1: Navigate to Listings ====================
     @Test(priority = 1)
-    public void CheckSavedListing() {
-        clicks(By.xpath("//android.view.View[@content-desc=\"35 Listing Projects\n" +
-                "01\n" +
-                "Listing Projects\n" +
-                "Discover our collection of ongoing and completed real estate development projects.\"]"));
-        clicks(By.xpath("//android.view.View[@content-desc=\"0%, Available\n" +
-                "1/10\n" +
-                "Single Phase\n" +
-                "Mayar\n" +
-                "From \n" +
-                "0\n" +
-                " AED\n" +
-                "Ref.6421814000019889013\n" +
-                "Najmat Abu Dhabi, Al Reem Island, Abu Dhabi, United Arab Emirates\n" +
-                "1 week ago\n" +
-                "3-4\n" +
-                "0%\n" +
-                " Completed\n" +
-                "Handover:\n" +
-                "Q1 1\"]/android.view.View[2]"));
+    public void openListingProjects() {
+        clicks(LISTING_PROJECTS);
+        clicks(MAYAR_CARD);
     }
+
+    // ==================== Test 2: Perform Login ====================
     @Test(priority = 2)
-    public void LogggedIn(){
-        clicks(By.xpath("//android.view.View[@content-desc=\"Close sheet\"]"));
-        EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.widget.EditText[1]"),"mark.casuco5@gmail.com");
-        clickdifferent(By.xpath("//android.view.View[@content-desc=\"Password\"]"));
-        EnterText(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.widget.EditText[2]"),"Travsmakoy5!");
-        clickdifferent(By.xpath("//android.view.View[@content-desc=\"Password\"]"));
-
-        clicks(By.xpath("//android.view.View[@content-desc=\"Login\"]"));
-        clicks(By.xpath("//android.view.View[@content-desc=\"Close sheet\"]"));
+    public void loginAsUser() {
+        clicks(CLOSE_SHEET);
+        EnterText(EMAIL_FIELD, "mark.casuco5@gmail.com");
+//        clickdifferent(PASSWORD_FIELD); // Brings keyboard focus
+        EnterText(PASSWORD_FIELD, "Travsmakoy5!");
+        clickdifferent(PASSWORD_FIELD); // Ensure the keyboard is dismissed or focus retained
+        clicks(LOGIN_BUTTON);
+        clicks(CLOSE_SHEET); // Close popup if appears again
     }
+
+    // ==================== Test 3: Save a Listing and Verify ====================
     @Test(priority = 3)
-    public void checkSaved(){
+    public void saveAndVerifyListing() {
+        clicks(MAYAR_CARD);
+        clicks(SAVE_BUTTON);
+        clicks(MORE_TAB);
+        clicks(SAVED_LISTINGS);
+        clicks(LISTING_TAB);
 
-        clicks(By.xpath("//android.view.View[@content-desc=\"0%, Available\n" +
-                "1/10\n" +
-                "Single Phase\n" +
-                "Mayar\n" +
-                "From \n" +
-                "0\n" +
-                " AED\n" +
-                "Ref.6421814000019889013\n" +
-                "Najmat Abu Dhabi, Al Reem Island, Abu Dhabi, United Arab Emirates\n" +
-                "1 week ago\n" +
-                "3-4\n" +
-                "0%\n" +
-                " Completed\n" +
-                "Handover:\n" +
-                "Q1 1\"]/android.view.View[2]"));
-        clicks(By.xpath("//android.widget.Button"));
-        clicks(By.xpath("//android.widget.ImageView[@content-desc=\"BOTTOM_NAVIGATION_BAR_MORE\n" +
-                "More\"]"));
-        clicks(By.xpath("//android.widget.ImageView[@content-desc=\"Saved Listings\"]"));
-        clicks(By.xpath("//android.view.View[@content-desc=\"Listing Project\n" +
-                "Tab 3 of 3\"]"));
-
+        // Verification: Ensure saved listing appears
+        boolean isSaved = driver.findElements(MAYAR_CARD).size() > 0;
+        Assert.assertTrue(isSaved, "Saved listing is not displayed.");
     }
+
+    // ==================== Test 4: Unsave the Listing ====================
     @Test(priority = 4)
-    public void unsaved(){
-        clicks(By.xpath("//android.view.View[@content-desc=\"0%, Available\n" +
-                "1/10\n" +
-                "Single Phase\n" +
-                "Mayar\n" +
-                "From \n" +
-                "0\n" +
-                " AED\n" +
-                "Ref.6421814000019889013\n" +
-                "Najmat Abu Dhabi, Al Reem Island, Abu Dhabi, United Arab Emirates\n" +
-                "1 week ago\n" +
-                "0\n" +
-                "3-4\n" +
-                "0\n" +
-                "0%\n" +
-                " Completed\n" +
-                "Handover:\n" +
-                "Q1 1\"]/android.view.View[2]"));
-
-        clicks(By.xpath("//android.widget.Button"));
-
+    public void unSaveListing() {
+        clicks(MAYAR_CARD);
+        clicks(SAVE_BUTTON); // Toggle to unsave
+        // Optional: Add assertion here to verify removal
     }
 }
