@@ -20,7 +20,9 @@ public class SectionCounts extends BaseMethods {
     private final By propertyFilter = By.xpath("//android.view.View[contains(@content-desc, 'Show Result ')]");
     private final By propertyLocation = By.xpath("//android.view.View[contains(@content-desc, 'Abu Dhabi')]");
     private final By backButton = By.xpath("//android.widget.Button");
-
+    private final By HOME = By.xpath("//android.widget.ImageView[@content-desc=\"BOTTOM_NAVIGATION_BAR_HOME\n" +
+            "Home\"]");
+    private int totalSectionCount = 0;
     // === Utility Methods ===
 
     private String extractFirstNumber(String text) {
@@ -63,10 +65,16 @@ public class SectionCounts extends BaseMethods {
     // === Test Cases ===
 
     @Test(priority = 1)
-    public void validateProjectCounts() {
+    public void VerifyListingProjectCounts() throws InterruptedException {
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.ImageView[@content-desc=\"BOTTOM_NAVIGATION_BAR_HOME\n" +
+                "Home\"]")));
+        clickElement(By.xpath("//android.widget.ImageView[@content-desc=\"BOTTOM_NAVIGATION_BAR_HOME\n" +
+                "Home\"]"));
         String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(projectTile)).getAttribute("content-desc"));
         System.out.println("Listing Project Count: " + outerCount);
-
+        Thread.sleep(500);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(projectTile));
         clickElement(projectTile);
 
         String headerCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(projectHeader)).getAttribute("content-desc"));
@@ -74,7 +82,7 @@ public class SectionCounts extends BaseMethods {
 
         System.out.println("Header Count: " + headerCount);
         System.out.println("Location Count: " + locationCount);
-
+//        totalSectionCount += Integer.parseInt(outerCount);
         backAndSwipeLeft();
 
         Assert.assertEquals(headerCount, outerCount, "Mismatch: Project header count does not match listing count.");
@@ -82,7 +90,7 @@ public class SectionCounts extends BaseMethods {
     }
 
     @Test(priority = 2)
-    public void validatePropertyCounts() throws InterruptedException {
+    public void VerifyPropertyCounts() throws InterruptedException {
         String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(propertyTile)).getAttribute("content-desc"));
         System.out.println("Listing Property Count: " + outerCount);
 
@@ -95,6 +103,7 @@ public class SectionCounts extends BaseMethods {
 
         String locationCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyLocation)).getAttribute("content-desc"));
         System.out.println("Location Count: " + locationCount);
+        totalSectionCount += Integer.parseInt(outerCount);
 
         backAndSwipeLeft();
 
@@ -102,7 +111,7 @@ public class SectionCounts extends BaseMethods {
         Assert.assertEquals(locationCount, outerCount, "Mismatch: Property location count does not match listing count.");
     }
     @Test(priority = 3)
-    public void validateUnitCounts() throws InterruptedException {
+    public void VerifyUnitCounts() throws InterruptedException {
         String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, 'Unit And Luxury')]"))).getAttribute("content-desc"));
         System.out.println("Listing Unit Count: " + outerCount);
 
@@ -120,10 +129,64 @@ public class SectionCounts extends BaseMethods {
         clickElement(propertyFilter);
 
         String locationCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyLocation)).getAttribute("content-desc"));
+        totalSectionCount += Integer.parseInt(outerCount);
 
         backAndSwipeLeft();
 
         Assert.assertEquals(String.valueOf(sum), outerCount, "Mismatch: Unit filter count does not match listing count.");
 //        Assert.assertEquals(locationCount, outerCount, "Mismatch: Property location count does not match listing count.");
+    }
+    @Test(priority = 4)
+    public void VerifyAgriCounts() throws InterruptedException {
+            String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, 'Agriculture')]"))).getAttribute("content-desc"));
+            System.out.println("Listing Agriculture Count: " + outerCount);
+
+            clickElement(By.xpath("//android.view.View[contains(@content-desc, 'Agriculture')]"));
+            Thread.sleep(800);
+            String filterCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyFilter)).getAttribute("content-desc"));
+            System.out.println("Filter Count: " + filterCount);
+
+            clickElement(propertyFilter);
+
+            String locationCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyLocation)).getAttribute("content-desc"));
+            System.out.println("Location Count: " + locationCount);
+        totalSectionCount += Integer.parseInt(outerCount);
+
+        backAndSwipeLeft();
+
+            Assert.assertEquals(filterCount, outerCount, "Mismatch: Agri filter count does not match listing count.");
+            Assert.assertEquals(locationCount, outerCount, "Mismatch: Agri location count does not match listing count.");
+    }
+    @Test(priority = 5)
+    public void VerifyIndustryCounts() throws InterruptedException {
+        String outerCount = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, 'Industry')]"))).getAttribute("content-desc"));
+        System.out.println("Listing Agriculture Count: " + outerCount);
+
+        clickElement(By.xpath("//android.view.View[contains(@content-desc, 'Industry')]"));
+
+        String filterCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyFilter)).getAttribute("content-desc"));
+        System.out.println("Filter Count: " + filterCount);
+        Thread.sleep(800);
+        clickElement(propertyFilter);
+
+        String locationCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyLocation)).getAttribute("content-desc"));
+        System.out.println("Location Count: " + locationCount);
+        totalSectionCount += Integer.parseInt(outerCount);
+
+        backAndSwipeLeft();
+
+        Assert.assertEquals(filterCount, outerCount, "Mismatch: Industry filter count does not match listing count.");
+        Assert.assertEquals(locationCount, outerCount, "Mismatch: Industry location count does not match listing count.");
+    }
+    @Test(priority = 6)
+    public void VerifyMapCount() {
+        String outerCountStr = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//android.view.View[contains(@content-desc, 'Map')]"))).getAttribute("content-desc"));
+        int mapCount = Integer.parseInt(outerCountStr);
+        System.out.println("Map Count: " + mapCount);
+        System.out.println("Total Section Count: " + totalSectionCount);
+
+        Assert.assertEquals(mapCount, totalSectionCount,
+                "Mismatch: Map count does not match the total of all section counts.");
     }
 }
