@@ -57,6 +57,7 @@ public class SectionCounts extends BaseMethods {
                 wait.until(ExpectedConditions.presenceOfElementLocated(locator));
                 return; // found one, exit early
             } catch (Exception ignored) {
+
             }
         }
         throw new RuntimeException("None of the expected elements were found on screen.");
@@ -124,7 +125,7 @@ public class SectionCounts extends BaseMethods {
         String RentfilterCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyFilter)).getAttribute("content-desc"));
         System.out.println("Rent Filter Count: " + RentfilterCount);
         int sum = Integer.parseInt(RentfilterCount) + Integer.parseInt(filterCount);
-//        System.out.println("Total Unit Counts: " + sum);
+//      System.out.println("Total Unit Counts: " + sum);
 
         clickElement(propertyFilter);
 
@@ -150,9 +151,9 @@ public class SectionCounts extends BaseMethods {
 
             String locationCount = extractFirstNumber(wait.until(ExpectedConditions.visibilityOfElementLocated(propertyLocation)).getAttribute("content-desc"));
             System.out.println("Location Count: " + locationCount);
-        totalSectionCount += Integer.parseInt(outerCount);
+            totalSectionCount += Integer.parseInt(outerCount);
 
-        backAndSwipeLeft();
+            backAndSwipeLeft();
 
             Assert.assertEquals(filterCount, outerCount, "Mismatch: Agri filter count does not match listing count.");
             Assert.assertEquals(locationCount, outerCount, "Mismatch: Agri location count does not match listing count.");
@@ -180,12 +181,10 @@ public class SectionCounts extends BaseMethods {
     }
     @Test(priority = 6)
     public void VerifyMapCount() {
-        String outerCountStr = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//android.view.View[contains(@content-desc, 'Map')]"))).getAttribute("content-desc"));
+        String outerCountStr = extractFirstNumber(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.view.View[contains(@content-desc, 'Map')]"))).getAttribute("content-desc"));
         int mapCount = Integer.parseInt(outerCountStr);
         System.out.println("Map Count: " + mapCount);
         System.out.println("Total Section Count: " + totalSectionCount);
-
         Assert.assertEquals(mapCount, totalSectionCount,
                 "Mismatch: Map count does not match the total of all section counts.");
     }
