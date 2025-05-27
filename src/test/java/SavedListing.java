@@ -14,7 +14,7 @@ public class SavedListing extends BaseMethods {
     private final By LISTING_PROJECTS = By.xpath("//android.view.View[contains(@content-desc, 'Listing Projects')]");
     private final By LISTING_PROPERTY = By.xpath("//android.view.View[contains(@content-desc, 'Property And Luxury')]");
     private final By LISTING_UNIT = By.xpath("//android.view.View[contains(@content-desc, 'Unit And Luxury')]");
-    private final By MAYAR_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Manarat Living')]/android.view.View[2]");
+    private final By MAYAR_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Rak Tower')]/android.view.View[2]");
     private final By PROP_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Commercial Building')]/android.view.View[2]");
     private final By UNIT_CARD = By.xpath("//android.view.View[contains(@content-desc, 'Apartment')]/android.view.View[2]");
 
